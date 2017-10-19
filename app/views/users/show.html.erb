@@ -11,18 +11,36 @@
 </p>
 
 <p>
+  <strong>User Time Zone:</strong>
+  <%= @user.time_zone %>
+</p>
+<p>
+  <strong>Show tasks due TODAY</strong>
+  <%= link_to 'Tasks Due Today', user_path(@user, today: 'Yes')%> | <%= link_to 'Show All Tasks', @user%> 
+</p>
+<p>
   <strong>Task Schedules</strong>
   <table>
       <thead>
+        <th>
+          ID
+        </th>
         <th>
           Name
         </th>
         <th>
           Due Date
         </th>
+        <th>
+          Complete
+        </th>
       </thead>
       <tbody>
-          <%= render @user.task_schedules %>
+          <% if params[:today] %>
+            <%= render @user.task_schedules.tasks_due_today %>
+          <% else %>
+            <%= render @user.task_schedules %>
+          <% end %>
       </tbody>
   </table>
 </p>
@@ -31,6 +49,9 @@
   <strong>Tasks</strong>
   <table>
       <thead>
+        <th>
+          ID
+        </th>
         <th>
           Name
         </th>

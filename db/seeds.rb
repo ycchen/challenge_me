@@ -6,9 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
+tz = ['Pacific Time (US & Canada)', 'Mountain Time (US & Canada)', 'Central Time (US & Canada)','Eastern Time (US & Canada)']
 20.times do
-  user = User.create(name: Faker::Name.name, email: Faker::Internet.email)
+  user = User.create(name: Faker::Name.name, email: Faker::Internet.email, time_zone: tz.sample)
   10.times do
     due_date = (rand(9)+1).days.from_now
     TaskSchedule.create(name: Faker::Lorem.sentence, due_date: due_date, user: user)
