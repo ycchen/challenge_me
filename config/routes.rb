@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :users
 
   root to: 'users#index'
+  get 'task_complete' => 'tasks#complete'
 end

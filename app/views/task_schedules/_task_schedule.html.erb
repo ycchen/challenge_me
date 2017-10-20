@@ -12,8 +12,6 @@
     <%#= format_time(task_schedule.due_date, 'Eastern Time (US & Canada)') %>
   </td>
   <td>
-  	<button class="btn btn-default">Complete</button>
-  	<%= link_to "complete" , '/', remote: true %>
-  	<a class="btn btn-secondary" href="#" role="button">Complete</a>
+  	<%= link_to "complete" , task_complete_path(id: task_schedule.id), remote: true ,class: "btn btn-primary"%>
   </td>
 </tr>

@@ -21,6 +21,29 @@ class TasksController < ApplicationController
   def edit
   end
 
+  def complete
+    # logger.debug "9999999999999999999#{params.inspect}"
+    if params[:id]
+      ts = TaskSchedule.find params[:id]
+      @user = ts.user
+      exists_task = Task.where(name: ts.name, user_id: ts.user.id)
+      # logger.debug "-======= name: #{ts.name} : user_id: #{ts.user.id} #{exists_task.blank?}  #{exists_task.inspect}"
+      if exists_task.blank?
+        completed_task = Task.new
+        completed_task.name = ts.name
+        completed_task.completed = true
+        completed_task.due_date = ts.due_date
+        completed_task.user_id = ts.user_id
+        completed_task.save
+        render :complete
+      else
+        render :task_already_completed
+      end
+    else
+      render :not_allow
+    end
+  end
+
   # POST /tasks
   # POST /tasks.json
   def create

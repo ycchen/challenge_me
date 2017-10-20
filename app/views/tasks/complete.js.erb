@@ -1,0 +1,4 @@
+$(document).ready(function(){
+    console.log( "ready! <%= params.inspect %>" );
+    $("#user_tasks").html("<%= j render @user.tasks %>")
+});

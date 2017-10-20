@@ -37,7 +37,11 @@
       </thead>
       <tbody>
           <% if params[:today] %>
-            <%= render @user.task_schedules.tasks_due_today %>
+            <% if @user.task_schedules.tasks_due_today.size == 0 %>
+              <tr><td><strong>No task is due today</strong></td></tr>
+            <% else %>
+              <%= render @user.task_schedules.tasks_due_today %>
+            <% end %>
           <% else %>
             <%= render @user.task_schedules %>
           <% end %>
@@ -62,9 +66,10 @@
           Due Date
         </th>
       </thead>
-      <tbody>
+      <tbody id="user_tasks">
           <%= render @user.tasks %>
       </tbody>
+      </div>  
   </table>
 </p>
 
