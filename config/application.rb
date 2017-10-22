@@ -27,7 +27,7 @@ module ChallengeMe
 
     # Don't generate system test files.
     config.generators.system_tests = nil
-    config.active_job.queue_adapter = :sidekiq
-    # config.active_job.queue_adapter = :resque
+    # config.active_job.queue_adapter = :sidekiq
+    config.active_job.queue_adapter = :resque
   end
 end
