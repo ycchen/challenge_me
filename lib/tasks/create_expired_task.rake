@@ -5,7 +5,7 @@ namespace :create_expired_task do
 	task :create_incompleted_tasks do
 	  TaskSchedule.all.each do |task|
 		    if task.due_date < Time.now
-		        Task.create!(name: task.name, due_date: task.due_date, completed: false)
+		        Task.create!(user_id: task.user_id, name: task.name, due_date: task.due_date, completed: false)
 		    end
 		end
 	end
