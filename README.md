@@ -53,6 +53,17 @@ that can create the incomplete tasks if the due date has expired.
 
 Bonus points: Use the modern ActiveJob syntax so that any processor would work (Delayed Job, Sidekick, Resque, etc)
 
+### How to enqueue the job
+
+1. Run this inside of rails console
+> TestJob.perform_later(args)
+
+2. Execute the job in queue
+$ LOGGING=1 QUEUE=* bundle exec rake resque:work
+
+### Start resque web interface
+$ resque-web
+
 ## Challenge 3
 
 The app currently does not display or respect Time Zones.  Add functionality to allow
